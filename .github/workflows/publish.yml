@@ -32,7 +32,9 @@ jobs:
         run: python scripts/update_news.py
       - name: Basisfunktionen überprüfen
         run: |
-          node --check site/cockpit-plus.js
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run check
+          npm test
           test -s site/index.html
           python -c "import json; d=json.load(open('site/news.json',encoding='utf-8')); assert all(isinstance(d.get('categories',{}).get(k),list) and len(d['categories'][k]) > 0 for k in ('world','ai','stocks'))"
       - name: GitHub Pages einrichten

@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-18T15:20:00+02:00",
-  "method": "Redaktionell ausgewählte Nachrichten, Stand 18.10.2026",
+  "updatedAt": "2026-10-18T17:00:39+00:00",
+  "method": "Öffentliche Google-News-RSS-Feeds; aktuelle Themen, mehrere etablierte Quellen",
   "categories": {
     "world": [
       {
@@ -71,5 +71,22 @@
         "url": "https://apnews.com/article/c27809783ae3230b44c26e5ee4bea056"
       }
     ]
+  },
+  "feeds": {
+    "world": {
+      "updatedAt": "2026-10-18T15:20:00+02:00",
+      "attemptedAt": "2026-10-18T17:00:39+00:00",
+      "error": "HTTPError"
+    },
+    "ai": {
+      "updatedAt": "2026-10-18T15:20:00+02:00",
+      "attemptedAt": "2026-10-18T17:00:39+00:00",
+      "error": "HTTPError"
+    },
+    "stocks": {
+      "updatedAt": "2026-10-18T15:20:00+02:00",
+      "attemptedAt": "2026-10-18T17:00:39+00:00",
+      "error": "HTTPError"
+    }
   }
 }
