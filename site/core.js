@@ -31,8 +31,10 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 function merge(base,local,remote){
  const out=empty();let conflicts=0;
  for(const k of groups){
+  const baseOrder=(base[k]||[]).map(x=>x.id),localOrder=(local[k]||[]).map(x=>x.id),remoteOrder=(remote[k]||[]).map(x=>x.id);
+  const order=same(baseOrder,localOrder)?remoteOrder:localOrder;
   const b=new Map((base[k]||[]).map(x=>[x.id,x])),l=new Map((local[k]||[]).map(x=>[x.id,x])),r=new Map((remote[k]||[]).map(x=>[x.id,x]));
-  for(const id of new Set([...l.keys(),...r.keys(),...b.keys()])){
+  for(const id of new Set([...order,...l.keys(),...r.keys(),...b.keys()])){
    const bv=b.get(id),lv=l.get(id),rv=r.get(id);
    if(same(lv,rv)){if(lv)out[k].push(clone(lv));continue}
    if(same(lv,bv)){if(rv)out[k].push(clone(rv));continue}

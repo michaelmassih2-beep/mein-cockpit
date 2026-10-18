@@ -15,6 +15,11 @@ class NewsTests(unittest.TestCase):
  def test_xml_sort_filter_and_deduplication(self):
   xml=b'<rss><channel>'+b''.join(f'<item><title>Current economic development {i} - Publisher {i}</title><link>https://news.google.com/rss/a{i}</link><source>Publisher {i}</source><pubDate>Sun, 18 Oct 2026 {h}:00:00 GMT</pubDate></item>'.encode() for i,h in [(1,'08'),(2,'12'),(3,'10'),(4,'09')])+b'</channel></rss>'
   rows=news.parse_feed(xml,datetime(2026,10,18,15,tzinfo=timezone.utc));self.assertEqual(len(rows),3);self.assertIn('2',rows[0]['title']);self.assertIn('3',rows[1]['title'])
+ def test_topics_exclude_unrelated_politics_and_science(self):
+  self.assertFalse(news.matches_topic('Selenskyj spricht über Erfolge der Bodentruppen','stocks'))
+  self.assertFalse(news.matches_topic('500 Jahre Uni Marburg: Rekorde der Forschung','ai'))
+  self.assertTrue(news.matches_topic('Bau von KI-Rechenzentren kommt ins Stocken','ai'))
+  self.assertTrue(news.matches_topic('IWF warnt vor hoher Inflation','world'))
  def test_external_entities_rejected(self):
   with self.assertRaises(ValueError):news.parse_feed(b'<!DOCTYPE x [<!ENTITY y SYSTEM "file:///etc/passwd">]><rss/>')
 if __name__=='__main__':unittest.main()

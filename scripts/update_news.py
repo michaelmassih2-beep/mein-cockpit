@@ -17,12 +17,18 @@ QUERIES={
  'world':'(Weltwirtschaft OR Konjunktur OR Inflation OR IWF OR Weltbank) (site:tagesschau.de OR site:reuters.com OR site:handelsblatt.com OR site:dw.com OR site:zeit.de)',
  'ai':'("Künstliche Intelligenz" OR Cybersicherheit OR Software OR Halbleiter) (site:heise.de OR site:golem.de OR site:tagesschau.de OR site:reuters.com OR site:computerbase.de)',
  'stocks':'(Aktien OR Börse OR DAX OR Nasdaq) (site:handelsblatt.com OR site:reuters.com OR site:tagesschau.de OR site:boerse.ard.de OR site:finanzen.net)'}
+TOPICS={
+ 'world':r'wirtschaft|konjunktur|inflation|iwf|weltbank|zoll|zölle|handel|schulden|zins|wachstum|not(en)?bank|rezession',
+ 'ai':r'\bki\b|künstlich|software|cyber|rechenzentr|halbleit|chip|technolog|cloud|openai|microsoft|nvidia|computer|digital',
+ 'stocks':r'aktie|börse|dax|nasdaq|s&p|dow jones|wall street|anleger|invest|quartal|gewinn|kurs|markt|märkte|fonds|etf|rohstoff|gold|öl'
+}
+def matches_topic(title,section):return not section or bool(re.search(TOPICS[section],title,re.IGNORECASE))
 class PlainText(HTMLParser):
  def __init__(self):super().__init__();self.parts=[]
  def handle_data(self,data):self.parts.append(data)
 def clean_html(text):
  p=PlainText();p.feed(text or '');return re.sub(r'\s+',' ',unescape(' '.join(p.parts))).strip()
-def parse_feed(payload,now=None):
+def parse_feed(payload,now=None,section=None):
  now=now or datetime.now(timezone.utc);items=[]
  if b'<!DOCTYPE' in payload.upper() or b'<!ENTITY' in payload.upper():raise ValueError('XML entities not allowed')
  root=ET.fromstring(payload)
@@ -34,7 +40,7 @@ def parse_feed(payload,now=None):
   if not url.startswith('https://news.google.com/'):continue
   src=raw.find('source');publisher=(src.text or '').strip() if src is not None else 'Google News'
   if title.endswith(' - '+publisher):title=title[:-(len(publisher)+3)]
-  if len(title)<15:continue
+  if len(title)<15 or not matches_topic(title,section):continue
   if any(x['title'].casefold()==title.casefold() for x in items):continue
   # Aggregator descriptions often consist only of repeated links, so omit them.
   items.append({'title':title,'summary':'','source':publisher,'date':when.date().isoformat(),'publishedAt':when.isoformat(timespec='seconds'),'url':url})
@@ -53,7 +59,7 @@ def get_feed(query):
  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; PersonalCockpit/3.0)'})
  with urllib.request.urlopen(req,timeout=22) as response:payload=response.read(2500001)
  if len(payload)>2500000:raise ValueError('Feed too large')
- return parse_feed(payload)
+ return parse_feed(payload,section=next((k for k,v in QUERIES.items() if v==query),None))
 def refresh(existing,fetcher=get_feed,now=None):
  stamp=(now or datetime.now(timezone.utc)).isoformat(timespec='seconds');categories={};feeds={}
  def load(pair):
@@ -64,7 +70,7 @@ def refresh(existing,fetcher=get_feed,now=None):
    # Retained records keep their original article timestamps.
    for old in existing.get('categories',{}).get(key,[]):
     if len(records)>=3:break
-    if old.get('title') not in {r['title'] for r in records}:records.append(old)
+    if matches_topic(old.get('title',''),key) and old.get('title') not in {r['title'] for r in records}:records.append(old)
    return key,records[:3],{'updatedAt':stamp,'attemptedAt':stamp,'error':None,'freshCount':len(records)}
   except Exception as error:
    old_meta=existing.get('feeds',{}).get(key,{})

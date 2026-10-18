@@ -2,8 +2,8 @@
 
 ## Nachgewiesen
 
-- 16 automatische Prüfungen für Datenzusammenführung, konkurrierende Änderungen, Import, sichere Linkausgabe, Formularbedienung, Suche und Modulverwaltung bestanden.
-- Vier Python-Prüfungen für RSS-Auswertung, Sortierung, externe XML-Entitäten und Erhalt alter Quellenzeitstempel bei Fehlern bestanden.
+- 19 automatische Prüfungen für Datenzusammenführung, konkurrierende Änderungen, Import, sichere Linkausgabe, Formularbedienung, Suche, Modulverwaltung, großer verschlüsselter Datenbestände und Ablehnung falscher Passwörter bestanden.
+- Fünf Python-Prüfungen für RSS-Auswertung, Sortierung, externe XML-Entitäten und Erhalt alter Quellenzeitstempel bei Fehlern bestanden.
 - Serverseitige SQL-Integrationprüfung bestanden: Erstschreiben, atomare Versionsfortschreibung, Zurückweisen veralteter Schreibversuche, Ausschluss fremder Konten, Ausschluss anonymer Zugriffe und interner Funktionen.
 - Testidentitäten vollständig innerhalb einer Transaktion zurückgerollt.
 - Supabase-Funktion veröffentlicht. Cron-Minutenplan aktiv. Tatsächlicher Worker-Aufruf mit HTTP 200 und aktualisiertem Lebenszeichen beobachtet.
@@ -16,6 +16,6 @@
 - E-Mail-Versand; Versanddienst und Absenderdomain fehlen.
 - Gleichzeitige Nutzung mit zwei real angemeldeten Geräten. Datenzusammenführung und serverseitige Versionsprüfung sind isoliert geprüft.
 - Vollständige visuelle Prüfung auf Smartphone und Desktop.
-- Aktueller RSS-Abruf im Produktionsworkflow. Der Entwicklungsrechner erreicht die RSS-Quellen derzeit nicht; vorhandene Daten bleiben mit Fehlermarkierung erhalten.
+- Prüfung auf echte Artikelrelevanz bleibt regelbasiert; Quellen können unpassende oder verspätete Treffer liefern.
 
-Diese Punkte werden nach Live-Veröffentlichung soweit möglich aktualisiert. Eine gespeicherte Aufgabe wird nicht allein als aktive Benachrichtigung gezählt.
+Die Veröffentlichung vom 18.10.2026 über GitHub Actions war erfolgreich. Der echte Browser lädt Version 3 und bestätigt die erreichbare Cloud-Konfiguration. Der Produktionsworkflow konnte die RSS-Quellen aktualisieren. Eine gespeicherte Aufgabe wird nicht allein als aktive Benachrichtigung gezählt.
