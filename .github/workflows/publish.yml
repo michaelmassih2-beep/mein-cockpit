@@ -1,0 +1,41 @@
+name: Cockpit und Nachrichten bereitstellen
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 */3 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dateien abrufen
+        uses: actions/checkout@v4
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Aktuelle Nachrichten abrufen
+        run: python scripts/update_news.py
+      - name: GitHub Pages einrichten
+        uses: actions/configure-pages@v5
+      - name: Website vorbereiten
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Website veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
