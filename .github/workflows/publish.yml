@@ -30,6 +30,11 @@ jobs:
           python-version: '3.12'
       - name: Aktuelle Nachrichten abrufen
         run: python scripts/update_news.py
+      - name: Basisfunktionen überprüfen
+        run: |
+          node --check site/cockpit-plus.js
+          test -s site/index.html
+          python -c "import json; d=json.load(open('site/news.json',encoding='utf-8')); assert all(isinstance(d.get('categories',{}).get(k),list) and len(d['categories'][k]) > 0 for k in ('world','ai','stocks'))"
       - name: GitHub Pages einrichten
         uses: actions/configure-pages@v5
         with:
