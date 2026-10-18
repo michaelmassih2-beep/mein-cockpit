@@ -1,0 +1,75 @@
+{
+  "updatedAt": "2026-10-18T15:20:00+02:00",
+  "method": "Redaktionell ausgewählte Nachrichten, Stand 18.10.2026",
+  "categories": {
+    "world": [
+      {
+        "title": "Weltbank und IWF lassen Schwellenländer mit vielen Fragen zurück",
+        "summary": "Steigende Schuldenkosten und geopolitische Konflikte belasten die Entwicklungsländer. Konkrete neue Antworten blieben bei den Jahrestagungen weitgehend aus.",
+        "source": "Reuters",
+        "date": "2026-10-18",
+        "url": "https://www.reuters.com/business/imfworld-bank-meetings-leave-developing-countries-with-more-questions-than-2026-10-18/"
+      },
+      {
+        "title": "Wachsende Schuldenlast zwingt Entwicklungsländer zum Umdenken",
+        "summary": "Hohe Zinslasten und sinkende Entwicklungshilfe erhöhen den Druck, neue Finanzierungsquellen zu erschließen.",
+        "source": "Reuters",
+        "date": "2026-10-17",
+        "url": "https://www.reuters.com/world/high-debt-growing-strains-put-focus-need-new-development-approaches-2026-10-17/"
+      },
+      {
+        "title": "IWF fordert Europa zu Wachstum oder geringerer Verschuldung auf",
+        "summary": "Für den Euroraum erwartet der Fonds 2026 nur 1,1 Prozent Wachstum und warnt vor langfristigen Finanzierungsrisiken.",
+        "source": "Reuters",
+        "date": "2026-10-16",
+        "url": "https://www.reuters.com/business/europe-must-boost-growth-or-borrow-less-keep-debt-sustainable-imf-says-2026-10-16/"
+      }
+    ],
+    "ai": [
+      {
+        "title": "Microsoft soll britischen Rechenzentrumsvertrag beendet haben",
+        "summary": "Laut einem Medienbericht hat Microsoft ein Projekt mit Nscale verlassen. Probleme bei der Stromversorgung sollen das Projekt verzögert haben.",
+        "source": "Reuters",
+        "date": "2026-10-18",
+        "url": "https://www.reuters.com/business/media-telecom/microsoft-pulls-out-uk-data-center-deal-with-nscale-telegraph-reports-2026-10-18/"
+      },
+      {
+        "title": "China plant strengere Exportkontrollen für KI-Technologien",
+        "summary": "Ein Vorschlag erfasst unter anderem Modelle, Agenten und Rechencluster. Der Zugang über Programmierschnittstellen soll ausgenommen sein.",
+        "source": "Reuters",
+        "date": "2026-10-16",
+        "url": "https://www.reuters.com/world/asia-pacific/china-proposes-adding-40-ai-biotech-solar-technologies-export-control-list-2026-10-16/"
+      },
+      {
+        "title": "OpenAI und Meta warnen vor gefälschten KI-Beweismitteln",
+        "summary": "Vertreter beider Unternehmen erläuterten vor einem US-Justizausschuss die schwierige Erkennung manipulierter Audio- und Videoaufnahmen.",
+        "source": "Reuters",
+        "date": "2026-10-15",
+        "url": "https://www.reuters.com/legal/government/openai-meta-caution-us-judiciary-about-risk-deepfake-evidence-2026-10-15/"
+      }
+    ],
+    "stocks": [
+      {
+        "title": "Aktienfonds ziehen vierte Woche in Folge frisches Geld an",
+        "summary": "Globale Aktienfonds verbuchten in der Woche bis zum 14. Oktober deutliche Zuflüsse; Technologiefonds gerieten gleichzeitig unter Druck.",
+        "source": "Reuters",
+        "date": "2026-10-16",
+        "url": "https://www.reuters.com/world/china/global-markets-flows-graphic-2026-10-16/"
+      },
+      {
+        "title": "Quartalszahlen werden zum nächsten Test für KI-Aktien",
+        "summary": "Nach Kursverlusten richtet sich der Blick auf die Ergebnisse und Investitionspläne großer Technologiekonzerne.",
+        "source": "Reuters",
+        "date": "2026-10-16",
+        "url": "https://www.reuters.com/legal/transactional/wall-st-week-ahead-ai-rally-wobbles-stock-markets-spotlight-turns-earnings-2026-10-16/"
+      },
+      {
+        "title": "S&P 500 und Nasdaq schließen die Börsenwoche schwächer ab",
+        "summary": "Technologiewerte belasteten die US-Indizes am Freitag. Der Nasdaq verlor an diesem Handelstag rund 2,1 Prozent.",
+        "source": "Associated Press",
+        "date": "2026-10-16",
+        "url": "https://apnews.com/article/c27809783ae3230b44c26e5ee4bea056"
+      }
+    ]
+  }
+}
